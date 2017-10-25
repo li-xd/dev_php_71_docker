@@ -44,4 +44,4 @@ EXPOSE 5900
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["php-fpm7.0", "-F"]
+CMD ["php-fpm7.1", "-F"]
