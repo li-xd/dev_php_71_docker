@@ -44,6 +44,7 @@ echo "xdebug.profiler_enable=1" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini && \
 echo "xdebug.profiler_enable_trigger=1" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini && \
 echo "phar.readonly = Off" >> /etc/php/7.1/cli/php.ini
 
+
 EXPOSE 9000
 EXPOSE 5900
 
