@@ -16,6 +16,7 @@ rm -rf /var/lib/apt/lists/*
 # phpunit & composer
 ADD https://phar.phpunit.de/phpunit.phar /usr/local/bin/phpunit
 ADD https://getcomposer.org/composer.phar /usr/local/bin/composer
+ADD https://codeception.com/releases/2.4.0/codecept.phar /usr/local/bin/codecept
 COPY docker-entrypoint.sh /entrypoint.sh
 
 # connfiguration
