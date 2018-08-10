@@ -10,7 +10,7 @@ export LANG=en_US.UTF-8 && \
 apt-add-repository -y ppa:ondrej/php &&\
 apt-add-repository -y ppa:ondrej/pkg-gearman && \
 apt-get update && \
-apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml php7.1-ssh2 php-bcmath php7.1-bcmath php-xdebug git proxychains && \
+apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml php7.1-ssh2 php-bcmath php7.1-bcmath php-xdebug git proxychains language-selector language-env language-pack-zh-hans && \
 rm -rf /var/lib/apt/lists/*
 
 # phpunit & composer
@@ -36,6 +36,8 @@ mkdir /var/run/php && \
 mkdir /var/www && \
 chown -R www-data:www-data /var/www && \
 chmod +x /usr/local/bin/phpunit /usr/local/bin/composer /entrypoint.sh
+
+RUN dpkg-reconfigure locales
 
 WORKDIR /var/www
 
