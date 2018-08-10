@@ -47,6 +47,9 @@ echo "xdebug.profiler_enable_trigger=1" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini
 
 RUN echo "phar.readonly = Off" >> /etc/php/7.1/cli/php.ini
 
+ENV LANG zh_CN.UTF-8
+ENV LC_ALL zh_CN.UTF-8
+
 
 EXPOSE 9000
 EXPOSE 5900
