@@ -22,7 +22,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 # connfiguration
 RUN sed -E -i "s/^listen\ =.+?$/listen = 0.0.0.0:9000/" /etc/php/7.1/fpm/pool.d/www.conf && \
 sed -E -i "s/^pm\ =.+?$/pm = ondemand/" /etc/php/7.1/fpm/pool.d/www.conf && \
-sed -E -i "s/^pm\.max_children\ =.+?$/pm\.max_children = 4/" /etc/php/7.1/fpm/pool.d/www.conf && \
+sed -E -i "s/^pm\.max_children\ =.+?$/pm\.max_children = 10/" /etc/php/7.1/fpm/pool.d/www.conf && \
 sed -E -i "s/^;pm\.process_idle_timeout\ =.+?$/pm\.process_idle_timeout=10s/" /etc/php/7.1/fpm/pool.d/www.conf && \
 sed -E -i "s/^error_log\ =.+?$/error_log = \/proc\/self\/fd\/2/" /etc/php/7.1/fpm/php-fpm.conf && \
 sed -E -i "s/^post_max_size\ =.+?$/post_max_size = 100M/" /etc/php/7.1/fpm/php.ini && \
