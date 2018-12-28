@@ -22,16 +22,18 @@ COPY docker-entrypoint.sh /entrypoint.sh
 # connfiguration
 RUN sed -E -i "s/^listen\ =.+?$/listen = 0.0.0.0:9000/" /etc/php/7.1/fpm/pool.d/www.conf && \
 sed -E -i "s/^pm\ =.+?$/pm = ondemand/" /etc/php/7.1/fpm/pool.d/www.conf && \
-sed -E -i "s/^pm\.max_children\ =.+?$/pm\.max_children = 50/" /etc/php/7.1/fpm/pool.d/www.conf && \
+sed -E -i "s/^pm\.max_children\ =.+?$/pm\.max_children = 5/" /etc/php/7.1/fpm/pool.d/www.conf && \
 sed -E -i "s/^;pm\.process_idle_timeout\ =.+?$/pm\.process_idle_timeout=10s/" /etc/php/7.1/fpm/pool.d/www.conf && \
 sed -E -i "s/^error_log\ =.+?$/error_log = \/proc\/self\/fd\/2/" /etc/php/7.1/fpm/php-fpm.conf && \
 sed -E -i "s/^post_max_size\ =.+?$/post_max_size = 100M/" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^upload_max_filesize\ =.+?$/upload_max_filesize = 100M/" /etc/php/7.1/fpm/php.ini && \
-sed -E -i "s/^socks4 .*?$/socks5 192.168.64.1 1080/" /etc/proxychains.conf && \
+sed -E -i "s/^socks4 .*?$/socks5 docker_host 1080/" /etc/proxychains.conf && \
 echo "opcache.enable = 1" /etc/php/7.1/fpm/php.ini && \
-echo "opcache.validate_timestamps = 0" /etc/php/7.1/fpm/php.ini && \
+echo "opcache.validate_timestamps = 1" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^display_errors\ .+?$/display_errors = On/" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL \& \~E_DEPRECATED \& \~E_STRICT \& \~E_NOTICE/" /etc/php/7.1/fpm/php.ini && \
+sed -E -i "s/^display_errors\ .+?$/display_errors = On/" /etc/php/7.1/cli/php.ini && \
+sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL \& \~E_DEPRECATED \& \~E_STRICT \& \~E_NOTICE/" /etc/php/7.1/cli/php.ini && \
 mkdir /var/run/php && \
 mkdir /var/www && \
 chown -R www-data:www-data /var/www && \
