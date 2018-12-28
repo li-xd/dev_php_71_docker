@@ -31,9 +31,9 @@ sed -E -i "s/^socks4 .*?$/socks5 192.168.64.1 1080/" /etc/proxychains.conf && \
 echo "opcache.enable = 1" /etc/php/7.1/fpm/php.ini && \
 echo "opcache.validate_timestamps = 1" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^display_errors\ .+?$/display_errors = On/" /etc/php/7.1/fpm/php.ini && \
-sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL \& \~E_DEPRECATED \& \~E_STRICT \& \~E_NOTICE/" /etc/php/7.1/fpm/php.ini && \
+sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL/" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^display_errors\ .+?$/display_errors = On/" /etc/php/7.1/cli/php.ini && \
-sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL \& \~E_DEPRECATED \& \~E_STRICT \& \~E_NOTICE/" /etc/php/7.1/cli/php.ini && \
+sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL/" /etc/php/7.1/cli/php.ini && \
 mkdir /var/run/php && \
 mkdir /var/www && \
 chown -R www-data:www-data /var/www && \
