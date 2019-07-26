@@ -43,7 +43,10 @@ WORKDIR /var/www
 
 RUN echo "xdebug.remote_enable=1" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini && \
 echo "xdebug.remote_port=5900" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini && \
-echo "xdebug.remote_host=docker_host" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini
+echo "xdebug.remote_host=docker_host" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini && \
+echo "xdebug.profiler_enable=0" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini && \
+echo "xdebug.profiler_enable_trigger=1" >> /etc/php/7.1/fpm/conf.d/20-xdebug.ini
+
 
 RUN echo "phar.readonly = Off" >> /etc/php/7.1/cli/php.ini
 
