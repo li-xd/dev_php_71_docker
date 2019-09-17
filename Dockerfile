@@ -10,7 +10,7 @@ export LANG=en_US.UTF-8 && \
 apt-add-repository -y ppa:ondrej/php &&\
 apt-add-repository -y ppa:ondrej/pkg-gearman && \
 apt-get update && \
-apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml php7.1-ssh2 php-bcmath php7.1-bcmath php-xdebug git proxychains language-pack-zh-hans language-pack-zh-hans-base && \
+apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml php7.1-ssh2 php-bcmath php7.1-dev php7.1-bcmath php-xdebug git proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
 
 # phpunit & composer
@@ -18,6 +18,8 @@ ADD https://phar.phpunit.de/phpunit.phar /usr/local/bin/phpunit
 ADD https://getcomposer.org/composer.phar /usr/local/bin/composer
 ADD https://codeception.com/releases/2.4.0/codecept.phar /usr/local/bin/codecept
 COPY docker-entrypoint.sh /entrypoint.sh
+
+RUN phpize -v
 
 # connfiguration
 RUN sed -E -i "s/^listen\ =.+?$/listen = 0.0.0.0:9000/" /etc/php/7.1/fpm/pool.d/www.conf && \
