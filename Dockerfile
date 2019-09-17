@@ -13,6 +13,16 @@ apt-get update && \
 apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml php7.1-ssh2 php-bcmath php7.1-dev php7.1-bcmath php-xdebug git proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
 
+# 安装 sky walking
+RUN cd /tmp && \
+git clone --recurse-submodules https://github.com/SkywalkingContrib/skywalking-php-sdk.git && \
+cd skywalking-php-sdk && \
+phpize && ./configure && make && make install && \
+cd src/report && \
+make && \
+cp report_client /usr/bin
+
+
 # phpunit & composer
 ADD https://phar.phpunit.de/phpunit.phar /usr/local/bin/phpunit
 ADD https://getcomposer.org/composer.phar /usr/local/bin/composer
@@ -30,8 +40,14 @@ sed -E -i "s/^error_log\ =.+?$/error_log = \/proc\/self\/fd\/2/" /etc/php/7.1/fp
 sed -E -i "s/^post_max_size\ =.+?$/post_max_size = 100M/" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^upload_max_filesize\ =.+?$/upload_max_filesize = 100M/" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^socks4 .*?$/socks5 192.168.64.1 1080/" /etc/proxychains.conf && \
-echo "opcache.enable = 1" /etc/php/7.1/fpm/php.ini && \
-echo "opcache.validate_timestamps = 1" /etc/php/7.1/fpm/php.ini && \
+echo "opcache.enable = 1" >> /etc/php/7.1/fpm/php.ini && \
+echo "opcache.validate_timestamps = 1" >> /etc/php/7.1/fpm/php.ini && \
+echo "extension=skywalking.so"  >> /etc/php/7.1/fpm/php.ini && \
+echo "skywalking.enable = 1" >> /etc/php/7.1/fpm/php.ini && \
+echo "skywalking.version = 5" >> /etc/php/7.1/fpm/php.ini && \
+echo "skywalking.app_code = biz_dev" >> /etc/php/7.1/fpm/php.ini && \
+echo "skywalking.grpc = 10.1.1.35:11800" >> /etc/php/7.1/fpm/php.ini && \
+echo "skywalking.log_path = /tmp" >> /etc/php/7.1/fpm/php.ini && \
 mkdir /var/run/php && \
 mkdir /var/www && \
 chown -R www-data:www-data /var/www && \
