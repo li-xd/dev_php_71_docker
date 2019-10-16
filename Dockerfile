@@ -15,7 +15,7 @@ rm -rf /var/lib/apt/lists/*
 
 # 安装 sky walking
 RUN cd /tmp && \
-git clone https://github.com/SkyAPM/SkyAPM-php-sdk.git && \
+git clone  --branch 3.1.7 https://github.com/SkyAPM/SkyAPM-php-sdk.git && \
 cd SkyAPM-php-sdk && \
 phpize && ./configure && make && make install 
 
