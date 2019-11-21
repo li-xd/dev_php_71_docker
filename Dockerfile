@@ -10,15 +10,8 @@ export LANG=en_US.UTF-8 && \
 apt-add-repository -y ppa:ondrej/php &&\
 apt-add-repository -y ppa:ondrej/pkg-gearman && \
 apt-get update && \
-apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml wget php7.1-ssh2 php-bcmath php7.1-dev php7.1-bcmath php-xdebug git language-pack-zh-hans language-pack-zh-hans-base libcurl4-openssl-dev  && \
+apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml wget php7.1-ssh2 php-bcmath php7.1-bcmath php-xdebug git curl proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
-
-# 安装 sky walking
-RUN cd /tmp && \
-git clone https://github.com/SkyAPM/SkyAPM-php-sdk.git && \
-cd SkyAPM-php-sdk && \
-phpize && ./configure && make && make install && \
-wget https://github.com/SkyAPM/SkyAPM-php-sdk/releases/download/3.2.0/sky-php-agent-linux-x64
 
 
 # phpunit & composer
@@ -35,13 +28,9 @@ sed -E -i "s/^;pm\.process_idle_timeout\ =.+?$/pm\.process_idle_timeout=10s/" /e
 sed -E -i "s/^error_log\ =.+?$/error_log = \/proc\/self\/fd\/2/" /etc/php/7.1/fpm/php-fpm.conf && \
 sed -E -i "s/^post_max_size\ =.+?$/post_max_size = 100M/" /etc/php/7.1/fpm/php.ini && \
 sed -E -i "s/^upload_max_filesize\ =.+?$/upload_max_filesize = 100M/" /etc/php/7.1/fpm/php.ini && \
+sed -E -i "s/^socks4 .*?$/socks5 10.254.254.254 1080/" /etc/proxychains.conf && \
 echo "opcache.enable = 1" >> /etc/php/7.1/fpm/php.ini && \
 echo "opcache.validate_timestamps = 1" >> /etc/php/7.1/fpm/php.ini && \
-echo "extension=skywalking.so"  >> /etc/php/7.1/fpm/php.ini && \
-echo "skywalking.enable = 1" >> /etc/php/7.1/fpm/php.ini && \
-echo "skywalking.version = 5" >> /etc/php/7.1/fpm/php.ini && \
-echo "skywalking.app_code = AllWayTest" >> /etc/php/7.1/fpm/php.ini && \
-echo "skywalking.sock_path=/tmp/sky_agent.sock" >> /etc/php/7.1/fpm/php.ini && \
 mkdir /var/run/php && \
 mkdir /var/www && \
 chown -R www-data:www-data /var/www && \
