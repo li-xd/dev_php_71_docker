@@ -10,7 +10,7 @@ export LANG=en_US.UTF-8 && \
 apt-add-repository -y ppa:ondrej/php &&\
 apt-add-repository -y ppa:ondrej/pkg-gearman && \
 apt-get update && \
-apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml wget php7.1-ssh2 php-bcmath php-imagick php7.1-bcmath php-xdebug git curl proxychains language-pack-zh-hans language-pack-zh-hans-base && \
+apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml wget php7.1-ssh2 php-bcmath php-imagick php7.1-bcmath php-xdebug git curl vim proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
 
 
