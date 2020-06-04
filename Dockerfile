@@ -16,8 +16,9 @@ rm -rf /var/lib/apt/lists/*
 
 # phpunit & composer
 ADD https://phar.phpunit.de/phpunit.phar /usr/local/bin/phpunit
-ADD https://getcomposer.org/composer.phar /usr/local/bin/composer
-RUN composer self-update
+
+RUN curl -s https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
