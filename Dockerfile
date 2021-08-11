@@ -13,6 +13,22 @@ apt-get update && \
 apt-get install -y php7.1-fpm php7.1-curl php7.1-mysql php7.1-mcrypt php7.1-gd php7.1-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.1-mbstring php7.1-xml php7.1-intl php-xml wget php7.1-ssh2 php-bcmath php-imagick php7.1-bcmath php-xdebug git curl vim proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p ~/build && \
+cd ~/build && \
+rm -rf ./swoole-src && \
+curl -o ./tmp/swoole.tar.gz https://github.com/swoole/swoole-src/archive/master.tar.gz -L && \
+tar zxvf ./tmp/swoole.tar.gz && \
+mv swoole-src* swoole-src && \
+cd swoole-src && \
+phpize && \
+./configure \
+--enable-coroutine \
+--enable-openssl  \
+--enable-http2  \
+--enable-async-redis \
+--enable-sockets \
+--enable-mysqlnd && \
+make clean && make && sudo make install
 
 # phpunit & composer
 ADD https://phar.phpunit.de/phpunit.phar /usr/local/bin/phpunit
