@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 MAINTAINER li-xd <a5834099147@live.cn>
 
 # install packages
