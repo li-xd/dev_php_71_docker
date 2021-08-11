@@ -10,7 +10,7 @@ apt-add-repository -y ppa:ondrej/php && \
 apt-add-repository -y ppa:ondrej/pkg-gearman && \
 apt-get update && \
 apt-get install -y php7.3 php7.3-dev && \
-apt-get install -y php7.3-fpm php7.3-curl php7.3-mysql php7.3-mcrypt php7.3-gd php7.3-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.3-mbstring php7.3-xml php7.3-intl php-xml wget php7.3-ssh2 php-bcmath php-imagick php7.3-bcmath php-xdebug git curl vim proxychains language-pack-zh-hans language-pack-zh-hans-base && \
+apt-get install -y php7.3-fpm php7.3-curl php7.3-mysql php7.3-zookeeper php7.3-mcrypt php7.3-gd php7.3-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.3-mbstring php7.3-xml php7.3-intl php-xml wget php7.3-ssh2 php-bcmath php-imagick php7.3-bcmath php-xdebug git curl vim proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /tmp/build && \
@@ -65,6 +65,7 @@ echo "xdebug.profiler_enable_trigger=1" >> /etc/php/7.3/fpm/conf.d/20-xdebug.ini
 
 
 RUN echo "phar.readonly = Off" >> /etc/php/7.3/cli/php.ini
+RUN echo "extension=swoole.so" >> /etc/php/7.3/cli/php.ini
 
 ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
