@@ -50,8 +50,8 @@ sed -E -i "s/^upload_max_filesize\ =.+?$/upload_max_filesize = 100M/" /etc/php/7
 sed -E -i "s/^socks4 .*?$/socks5 10.254.254.254 1080/" /etc/proxychains.conf && \
 echo "opcache.enable = 1" >> /etc/php/7.3/fpm/php.ini && \
 echo "opcache.validate_timestamps = 1" >> /etc/php/7.3/fpm/php.ini && \
-mkdir /var/run/php && \
-mkdir /var/www && \
+mkdir -p /var/run/php && \
+mkdir -p /var/www && \
 chown -R www-data:www-data /var/www && \
 chmod +x /usr/local/bin/phpunit /usr/local/bin/composer /entrypoint.sh
 
