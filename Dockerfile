@@ -7,9 +7,10 @@ apt-get upgrade -y && \
 apt-get install -y software-properties-common locales && \
 locale-gen en_US.UTF-8 && \
 export LANG=en_US.UTF-8 && \
-apt-add-repository -y ppa:ondrej/php &&\
+apt-add-repository -y ppa:ondrej/php && \
 apt-add-repository -y ppa:ondrej/pkg-gearman && \
 apt-get update && \
+apt-get install php7.3 && \
 apt-get install -y php7.3-fpm php7.3-curl php7.3-mysql php7.3-mcrypt php7.3-gd php7.3-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.3-mbstring php7.3-xml php7.3-intl php-xml wget php7.3-ssh2 php-bcmath php-imagick php7.3-bcmath php-xdebug git curl vim proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
 
