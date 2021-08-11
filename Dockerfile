@@ -16,7 +16,8 @@ rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /tmp/build && \
 cd /tmp/build && \
 rm -rf ./swoole-src && \
-curl -o ./tmp/swoole.tar.gz https://codeload.github.com/swoole/swoole-src/tar.gz/master -L && \
+mkdir -p ./tmp && \
+curl -o ./tmp/swoole.tar.gz https://github.com/swoole/swoole-src/archive/master.tar.gz -L && \
 tar zxvf ./tmp/swoole.tar.gz && \
 mv swoole-src* swoole-src && \
 cd swoole-src && \
