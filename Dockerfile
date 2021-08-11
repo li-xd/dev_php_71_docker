@@ -29,7 +29,7 @@ phpize && \
 --enable-async-redis \
 --enable-sockets \
 --enable-mysqlnd && \
-make clean && make && sudo make install
+make clean && make && make install
 
 # phpunit & composer
 ADD https://phar.phpunit.de/phpunit.phar /usr/local/bin/phpunit
