@@ -1,5 +1,4 @@
 FROM ubuntu:20.04
-MAINTAINER li-xd <a5834099147@live.cn>
 
 # install packages
 RUN apt-get update && \
@@ -14,8 +13,8 @@ apt-get install -y php7.3 && \
 apt-get install -y php7.3-fpm php7.3-curl php7.3-mysql php7.3-mcrypt php7.3-gd php7.3-zip php-memcached php-gearman php-mongodb php-redis php-mbstring php7.3-mbstring php7.3-xml php7.3-intl php-xml wget php7.3-ssh2 php-bcmath php-imagick php7.3-bcmath php-xdebug git curl vim proxychains language-pack-zh-hans language-pack-zh-hans-base && \
 rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p ~/build && \
-cd ~/build && \
+RUN mkdir -p /tmp/build && \
+cd /tmp/build && \
 rm -rf ./swoole-src && \
 curl -o ./tmp/swoole.tar.gz https://github.com/swoole/swoole-src/archive/master.tar.gz -L && \
 tar zxvf ./tmp/swoole.tar.gz && \
