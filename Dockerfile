@@ -14,17 +14,17 @@ apt-get install -y php7.3-fpm php7.3-curl php7.3-mysql php7.3-mcrypt php7.3-gd p
 rm -rf /var/lib/apt/lists/*
 
 RUN  cd /usr/local/ && \
-wget https://archive.apache.org/dist/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz && \
-tar -zxf zookeeper-3.4.9.tar.gz && \
-cd zookeeper-3.4.9/src/c && \
-./configure --prefix=/usr/local/zookeeper-3.4.9/ && \
+wget https://archive.apache.org/dist/zookeeper/zookeeper-3.4.12/zookeeper-3.4.12.tar.gz && \
+tar -zxf zookeeper-3.4.12.tar.gz && \
+cd zookeeper-3.4.12/src/c && \
+./configure --prefix=/usr/local/zookeeper-3.4.12/ && \
 make && make install && \
 cd /tmp/build && \
 wget http://pecl.php.net/get/zookeeper-0.6.4.tgz && \
 tar zxvf zookeeper-0.6.4.tgz && \
 cd zookeeper-0.6.4 && \
 phpize && \
-./configure –with-php-config=/usr/local/php/bin/php-config –with-libzookeeper-dir=/usr/local/zookeeper/zookeeper-3.4.5/ && \
+./configure –with-php-config=/usr/local/php/bin/php-config –with-libzookeeper-dir=/usr/local/zookeeper/zookeeper-3.4.12/ && \
 make && make install
 
 
