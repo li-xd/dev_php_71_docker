@@ -5,5 +5,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
     install-php-extensions gd xdebug redis mbstring xml intl swoole zookeeper 
 
+RUN install-php-extensions pcntl
+
 ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
